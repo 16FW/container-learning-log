@@ -16,10 +16,37 @@
 
 ## 확인 로그
 
-```text
-$ kubectl get nodes
-(출력 붙여넣기)
+```
+root@controlplane:~$ kubectl get nodes
+NAME           STATUS   ROLES           AGE   VERSION
+controlplane   Ready    control-plane   30d   v1.37.1
+node01         Ready    <none>          30d   v1.37.1
+root@controlplane:~$ kubectl get nodes -o wide
+NAME           STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION              CONTAINER-RUNTIME
+controlplane   Ready    control-plane   30d   v1.37.1   172.30.1.2    <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+node01         Ready    <none>          30d   v1.37.1   172.30.2.2    <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+root@controlplane:~$ kubectl version
+Client Version: v1.37.1
+Kustomize Version: v5.8.1
+Server Version: v1.37.1
+root@controlplane:~$ kubectl cluster-info
+Kubernetes control plane is running at https://172.30.1.2:6443
+CoreDNS is running at https://172.30.1.2:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+root@controlplane:~$ kubectl get pods
+No resources found in default namespace.
 ```
 
-## 막힌 점
--
+## Kubectl 이란? 
+kubectl은 클러스터의 API 서버에 요청을 보내는 명령줄 도구. 아래 명령어는 모두 “API 서버에게 이 정보를 알려 달라”는 질문이다. -> docker demon 같은 형태
+
+## 사용한 명령어 정리
+
+| 명령어 | 의미 | 확인한 점 |
+|---|---|---|
+| `kubectl get nodes` | 클러스터의 노드 목록과 상태 조회 | 노드 N개, STATUS가 모두 Ready |
+| `kubectl get nodes -o wide` | 노드의 IP, OS, 컨테이너 런타임 등 상세 조회 | INTERNAL-IP: 172.30.1.2 / 런타임: containerd://2.2.1 |
+| `kubectl version` | kubectl(Client)과 클러스터(Server)의 버전 확인 | Client v1.37.1 / Server v1.37.1 |
+| `kubectl cluster-info` | API 서버(control plane)와 CoreDNS 주소 확인 | API 서버: https://172.30.1.2:6443 |
+| `kubectl get pods` | default 네임스페이스의 Pod 목록 조회 | 배포 전이라 비어 있음 |
