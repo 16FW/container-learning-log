@@ -13,7 +13,7 @@ SWCON221 마이크로서비스 프로그래밍 수업과 공식 문서를 기반
 |---|------|------|------|------|
 | 0 | 실습 환경 (Killercoda) | 준비 | ✅ | [00-environment](kubernetes/00-environment.md) |
 | 1 | Create a cluster | 과제 | ✅ | [01](kubernetes/01-create-cluster.md) |
-| 2 | Deploy an app | 과제 | ⬜ | [02](kubernetes/02-deploy-app.md) |
+| 2 | Deploy an app | 과제 | ✅ | [02](kubernetes/02-deploy-app.md) |
 | 3 | Explore your app | 과제 | ⬜ | [03](kubernetes/03-explore-app.md) |
 | 4 | Expose your app publicly | 과제 | ⬜ | [04](kubernetes/04-expose-app.md) |
 | 5 | Scale up your app | 기록용 | ⬜ | [05](kubernetes/05-scale-app.md) |
